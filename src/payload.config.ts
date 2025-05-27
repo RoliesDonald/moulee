@@ -45,6 +45,7 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
+  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
   db: sqliteAdapter({
     client: {
       url: process.env.DATABASE_URI || '',
