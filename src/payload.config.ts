@@ -47,6 +47,7 @@ export default buildConfig({
   },
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
   db: sqliteAdapter({
+    // client: sqliteClientConfig,
     client: {
       // url: process.env.DATABASE_URI || '',
       url: process.env.TURSO_DATABASE_URL || '',
