@@ -32,6 +32,7 @@
     "cross-env": "^7.0.3",
     "framer-motion": "^11.0.25",
     "graphql": "^16.8.1",
+    "libsql": "^0.5.11",
     "lucide-react": "^0.365.0",
     "mini-svg-data-uri": "^1.4.4",
     "next": "15.3.0",
