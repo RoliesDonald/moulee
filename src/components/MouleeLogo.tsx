@@ -1,9 +1,10 @@
 'use client'
 
-// Import the Image component from next/image
+import React from 'react'
 import Image from 'next/image'
 
-const MouleeLogo: React.FC = () => {
+// Gunakan React.ComponentType<Record<string, any>> untuk tipe yang lebih umum
+const MouleeLogo: React.FC<Record<string, any>> = (props) => {
   return (
     <Image
       src="/mol_logo.png"
@@ -11,7 +12,8 @@ const MouleeLogo: React.FC = () => {
       width={200}
       height={200}
       style={{ objectFit: 'contain' }}
-    ></Image>
+      {...props} // Penting: sebarkan props yang diterima
+    />
   )
 }
 

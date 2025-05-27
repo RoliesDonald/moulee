@@ -1,39 +1,57 @@
+// src/components/Clients.tsx
 'use client'
 
 import React from 'react'
 import { InfiniteMovingCards } from './ui/InfiniteCards'
-import { Page, Media } from '@/payload-types'
+import { Page, Media } from '@/payload-types' // Pastikan ini path yang benar
 import Image from 'next/image'
-import { testimonials } from 'data/index'
+import { testimonials } from 'data/index' // Pastikan path ini benar
 
-type ClientProps = Extract<
-  Page['layout'][0],
-  {
-    blockType: 'client'
-    id?: string
-    blockName?: string | null
-    clients?: {
-      id: string
-      name: string
-      logo?: Media | null
-      nameLogo?: Media | null
-    }[]
-  }
+// Ubah definisi ClientProps
+// Kita akan langsung mengambil tipe block 'client' dari Page['layout']
+type ClientBlockFromPayload = Extract<
+  Page['layout'][number], // Menggunakan 'number' untuk mendapatkan union dari semua block types
+  { blockType: 'client' }
 >
 
+// Sekarang, definisikan ClientProps berdasarkan ClientBlockFromPayload
+// Ini lebih eksplisit dan aman
+export interface ClientProps extends ClientBlockFromPayload {}
+
+// type ClientProps = Extract< // <--- Ini definisi lama
+//   Page['layout'][0],
+//   {
+//     blockType: 'client'
+//     id?: string
+//     blockName?: string | null
+//     clients?: // Ini yang dulu menjadi masalah karena Payload-types.ts salah
+//       | {
+//           id: string | null
+//           name: string
+//           logo?: Media | null
+//           nameLogo?: Media | null
+//         }[]
+//       | null
+//   }
+// >
+
 type ClientItem = {
-  id: string
+  id: string | null
   name: string
-  logo?: Media | null
-  nameLogo?: Media | null
+  logo?: number | Media | null
+  nameLogo?: number | Media | null
 }
 
 export default function Clients({ block }: { block: ClientProps }) {
+  // Defensive checks for optional/nullable data
+  // Baris ini akan lebih jarang terpanggil jika payload-types.ts sudah benar
+  // Tapi tetap baik untuk validasi data runtime.
   if (!block || !block.clients || !Array.isArray(block.clients)) {
     console.warn(
-      "Clients component received invalid block data. 'block.clients' array is missing or not an array.",
+      "Clients component received 'clients' property that is not an array or is missing.",
       block,
     )
+    console.log('Received block data:', block) // Log the received data for debugging
     return null
   }
 
@@ -50,6 +68,7 @@ export default function Clients({ block }: { block: ClientProps }) {
         </div>
 
         <div className="flex flex-wrap items-center bg-slate-700/50 rounded-lg justify-center gap-4 md:gap-16 max-lg:mt-10 px-5 py-10">
+          {/* Type assertion untuk map agar lebih aman, meskipun seharusnya tidak perlu jika ClientProps sudah benar */}
           {block.clients.map((item: ClientItem) => {
             const clientLogo = item.logo as Media | null
             const clientLogoUrl = clientLogo?.url || null

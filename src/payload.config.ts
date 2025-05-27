@@ -24,13 +24,18 @@ export default buildConfig({
     },
     meta: {
       title: 'Moulee Garage | Admin',
+      icons: [
+        {
+          rel: 'icon', // Penting: ini menunjukkan itu adalah favicon
+          type: 'image/png', // Sesuaikan dengan tipe file favicon Anda
+          url: '/mol_logo_kecil.png',
+        },
+      ],
     },
     components: {
-      BeforeLogin: MouleeLogo,
       graphics: {
-        Logo: MouleeLogo,
-        Icon: MouleeLogo,
-        Favicon: MouleeFavicon,
+        Logo: MouleeLogo as any,
+        Icon: MouleeLogo as any,
       },
     },
   },

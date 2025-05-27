@@ -1,18 +1,14 @@
 import { headers as getHeaders } from 'next/headers.js'
-import Image from 'next/image'
 import { getPayload } from 'payload'
 import React from 'react'
 import { fileURLToPath } from 'url'
 import config from '@/payload.config'
-import Layout from '../(payload)/layout'
 import { Page } from '@/payload-types'
 import HeroBlock from './components/HeroBlock'
 import { FloatingNav } from './components/ui/NavBar'
 import { navItems } from 'data'
 import RecentProjects from './components/RecentProjects'
 import Clients from './components/Clients'
-import Experience from './components/Experience'
-import Approach from './components/Approach'
 import Footer from './components/Footer'
 import Grid from './components/Grid'
 
@@ -31,7 +27,7 @@ export default async function HomePage() {
     where: {
       slug: { equals: 'landing-page' },
     },
-    depth: 2,
+    depth: 1,
   })
   if (!page) {
     return <div>Page not found</div>

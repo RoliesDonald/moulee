@@ -32,7 +32,7 @@ export default function HeroBlock({ block }: { block: HeroProps }) {
           src={backLogo}
           alt="Mol"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="opacity-25"
+          className="opacity-10"
         ></Image>
       </div>
       <div className=" flex justify-center relative my-20 z-10">

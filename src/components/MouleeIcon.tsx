@@ -1,14 +1,18 @@
-// src/payload/components/CustomFavicon.tsx
-'use client' // Pastikan ini adalah client component
+'use client'
 
 import React from 'react'
+import Image from 'next/image'
 
-interface FaviconProps {
-  // Payload mungkin meneruskan props ke sini, meskipun untuk favicon jarang digunakan
-}
-
-const MouleeFavicon: React.FC<FaviconProps> = () => {
-  return '../../public/mol_logo_kecil.png'
+const MouleeFavicon: React.FC<Record<string, any>> = (props) => {
+  return (
+    <Image
+      src="/path/ke/favicon.ico" // Ganti dengan path favicon Anda
+      alt="Favicon"
+      width={32} // Sesuaikan lebar
+      height={32} // Sesuaikan tinggi
+      {...props}
+    />
+  )
 }
 
 export default MouleeFavicon
