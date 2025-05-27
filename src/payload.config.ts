@@ -48,12 +48,9 @@ export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL,
   db: sqliteAdapter({
     client: {
-      url:
-        process.env.TURSO_DATABASE_URL ||
-        'libsql://moulgarage-roliesdonald.aws-ap-northeast-1.turso.io',
-      authToken:
-        process.env.TURSO_AUTH_TOKEN ||
-        'eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDgzNDIxMTMsImlkIjoiNmMxNDI1NTgtNTA1Ny00MWQ4LWEwZDQtNjdmYjhjZDA3ZDkyIiwicmlkIjoiNDM5NzZhYTQtMmYwNi00ODM0LTlkZWQtOWVhYTc1N2RkNDJhIn0.6PxhAvE00eAXUaKRrXDzxB94IAwwSe9XKGLWyAqGYttzEjAC_MA6nDqB2B_S16wiWXaMuWADkzyPVu22FR3TDA',
+      // url: process.env.DATABASE_URI || '',
+      url: process.env.TURSO_DATABASE_URL || '',
+      authToken: process.env.TURSO_AUTH_TOKEN || '',
     },
   }),
   sharp,
